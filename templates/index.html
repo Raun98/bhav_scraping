@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+</head>
+<body>
+<style>
+    h1 {
+    text-align:center;
+    }
+
+    body,html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #1397ae !important;
+    }
+
+    .searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:red;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #807a79;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+</style>
+    <h1>Hello  Django</h1>
+
+    <div id="BhavApp">
+        <div class="container h-100" style="padding:20px;">
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                    <input v-model="search_result" class="search_input" type="text" v-on:input="search" placeholder="Search for a share or Click Search to go back">
+
+                  <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <table class ='table table-bordered table-hover' style="border-collapse:collapse;
+order-spacing: 0;border:none;background-color:#75ddf0;">
+
+            <thead>
+                <tr>
+                    <th scope="col">CODE </th>
+                    <th scope="col">NAME </th>
+                    <th scope="col">OPEN </th>
+                    <th scope="col">HIGH </th>
+                    <th scope="col">LOW  </th>
+                    <th scope="col">CLOSE</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr v-for="val in bse_shares">
+                    <th>[[ val.code ]]</th>
+                    <td>[[ val.name ]]</td>
+                    <td>[[ val.open ]]</td>
+                    <td>[[ val.high ]]</td>
+                    <td>[[ val.low ]]</td>
+                    <td>[[ val.close ]]</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class= "justify-content-center w-100">
+                <a class="btn btn-success" style="margin-top:5px;margin-left:47%" href="/export">Export</button></a>
+                <a href="."><button class="btn btn-primary" style="margin-top:5px;margin-right:5px;">Clear</button></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+            let app = new Vue({
+                el: "#BhavApp",
+                delimiters: ['[[', ']]'],
+                data: {
+                    bse_shares: [],
+                    search_result: null,
+                },
+                methods: {
+                    clr(){
+                        this.search_result='';
+                    },
+                    loadSharesFromDB(){
+                        axios
+                            .get('/search/')
+                            .then(response => {
+                                this.bse_shares=response.data;
+                                console.log(JSON.stringify(response.data))
+                            })
+                    },
+                    search() {
+                        axios
+                            .get('/search/?name='+this.search_result)
+                            .then(response => {
+                                this.bse_shares = response.data;
+                                console.log(JSON.stringify(response.data))
+
+                             })
+                    }
+                },
+                mounted(){
+                    this.loadSharesFromDB();
+                }
+            });
+
+    </script>
+</body>
+</html>
