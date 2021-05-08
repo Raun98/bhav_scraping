@@ -23,7 +23,7 @@ class Search(APIView):
         if search is not None:
             for key in client.keys():
                 #print(search," ",key)
-                if search.strip().lower() == key.decode('UTF-8').strip().lower():
+                if search.strip().lower() in key.decode('UTF-8').strip().lower():
                     d={}
                     d['code'] = client.hget(key, 'code')
                     d['name'] = client.hget(key, 'name')
