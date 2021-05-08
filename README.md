@@ -12,19 +12,26 @@ Python Django web app/server that:
 - The search needs to be performed on the backend using Redis.
 
 # Setup Guide:
-##THIS GUIDE IS FOR WINDOWS :
+
 - Start by cloning this project to your computer.
 - Install virtualenv using : `pip install virtualenv`
 - Create a virtual environment using : `virtualenv -p python3 env .` 
 - Create an src folder and extract the files to this directory. This will serve as the root directory.
 - Install dependencies using `pip install -r requirements.txt` in your terminal.
 
-# Running the web app
+# Running the web app on windows :
 On 3 separate terminals, navigate to the env directory and activate the Virtual environment using  `.\Scripts\activate` on all 3 prompts.
 Now, parallelly run each command in an individual terminal :
 - `celery -A zda worker -l info -P gevent`
 - `celery -A zda beat -l info`
 - `python manage.py runserver`
+
+# Running the web app on windows :
+On 3 separate terminals, navigate to the env directory and activate the Virtual environment using `source bin/activate`
+Now, parallelly run each command in an individual terminal :
+- `$ python manage.py runserver`
+- `redis-server`
+- `$ celery -A zda worker --beat -S django -l info`
 
 Once setup is complete, a link to the webapp based on your local host will appear.
 Django returns a URL to your local host, follow that to find the dashboard.
