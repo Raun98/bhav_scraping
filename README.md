@@ -26,7 +26,7 @@ Now, parallelly run each command in an individual terminal :
 - `celery -A zda beat -l info`
 - `python manage.py runserver`
 
-# Running the web app on windows :
+# Running the web app on Linux/Unix based Systems :
 On 3 separate terminals, navigate to the env directory and activate the Virtual environment using `source bin/activate`
 Now, parallelly run each command in an individual terminal :
 - `$ python manage.py runserver`
