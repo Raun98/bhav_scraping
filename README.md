@@ -12,7 +12,7 @@ Python Django web app/server that:
 - The search needs to be performed on the backend using Redis.
 
 # Setup Guide:
-
+##THIS GUIDE IS FOR WINDOWS :
 - Start by cloning this project to your computer.
 - Install virtualenv using : `pip install virtualenv`
 - Create a virtual environment using : `virtualenv -p python3 env .` 
@@ -28,5 +28,16 @@ Now, parallelly run each command in an individual terminal :
 
 Once setup is complete, a link to the webapp based on your local host will appear.
 Django returns a URL to your local host, follow that to find the dashboard.
+
+IMAGES FROM THE WEBSITE :
+
+The Home Page:
+![image](https://user-images.githubusercontent.com/71919273/117527882-d673fb80-afec-11eb-80d5-883947a6b798.png)
+The Search in action:
+![image](https://user-images.githubusercontent.com/71919273/117527922-163ae300-afed-11eb-876b-6c34f58e97d1.png)
+The export feature: 
+![image](https://user-images.githubusercontent.com/71919273/117527944-5306da00-afed-11eb-9c24-4c09353a244a.png)
+
+
 
 Thank you for reading! :book: :heart:
