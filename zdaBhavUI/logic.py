@@ -29,7 +29,7 @@ class Logic:
             date_today = "0" + str(today.day)
         else:
             date_today = str(today.day)
-        if len(str(today.day)) == 1:
+        if len(str(today.month)) == 1:
             month_today = "0" + str(today.month)
         else:
             month_today = str(today.month)
